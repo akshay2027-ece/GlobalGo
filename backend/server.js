@@ -18,11 +18,13 @@ const db = mysql.createPool({
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 4000, // Add this line
-    ssl: {                             // Add this object for TiDB
+    port: 4000, 
+    ssl: {
         minVersion: 'TLSv1.2',
-        rejectUnauthorized: true
-    }
+        rejectUnauthorized: true // This is the most important line for TiDB
+    },
+    connectionLimit: 10,
+    enableKeepAlive: true
 });
 
 // Test DB connection
