@@ -45,12 +45,13 @@ app.post("/api/contact", (req, res) => {
 
     const sql = "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)";
     db.query(sql, [name, email, message], (err) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: "Database error" });
-        }
-        res.status(201).json({ message: "Data saved successfully!" });
-    });
+    if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Database error" }); // Use 'message' instead of 'error'
+    }
+    // MOVE THIS INSIDE THE CALLBACK
+    res.status(201).json({ message: "Data saved successfully!" });
+});
 });
 
 // READ
