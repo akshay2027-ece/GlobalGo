@@ -8,7 +8,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:5500"
+    origin: "*"
 }));
 app.use(express.json());
 
@@ -101,5 +101,5 @@ app.use((err, req, res, next) => {
 // Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`GlobalGo Backend running on port ${PORT}`);
 });
